@@ -1,0 +1,53 @@
+# Paths definition
+IDIR =../include
+BDIR =../bin
+ODIR =./obj
+MDIR =./mod
+SDIR =.
+#libpath=/usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+
+# Compiler/Linker settings
+FC = gfortran -I$(IDIR) -J$(MDIR)  # -Wno-argument-mismatch 
+FLFLAGS = -g
+FCFLAGS = -g -c # -Wall -Wextra -Wconversion -Og -fcheck=bounds -fmax-errors=5
+PROGRAM = randconf
+MODULES = datatypes.f90 geometry.f90 
+PRGOBJ  = $(PROGRAM).o
+
+# Find all source files, create a list of corresponding object files
+SRCF90 = $(wildcard *.f90)
+OBJ = $(patsubst %.f90,$(ODIR)/%.o,$(SRCF90)) 
+
+# Find all source files, create a list of corresponding modules 
+MOD = $(wildcard $(MODULES))
+MODOBJ = $(patsubst %.f90,$(ODIR)/%.o,$(MOD)) 
+MODMOD = $(patsubst $(ODIR)/%.o,$(MDIR)/%.mod,$(MODOBJ))
+
+# Compiler steps for all objects
+$(ODIR)/%.o : %.f90
+	$(FC) $(FCFLAGS) -o $@ $< 
+
+# Linker
+$(BDIR)/$(PROGRAM) : $(OBJ)
+	$(FC) $(FLFLAGS) -o $@ $^ 
+
+debug: 
+
+	@echo "SRCF90  = $(SRCF90)"
+	@echo "OBJ     = $(OBJ)"
+	@echo "MOD     = $(MOD)"
+	@echo "MODOBJ  = $(MODOBJ)"
+	@echo "PROGRAM = $(PROGRAM)"
+	@echo "PRGOBJ  = $(PRGOBJ)"
+	@echo "MODMOD  = $(MODMOD)"
+#	DEBUG=1 make clean $(BDIR)/$(PROGRAM)
+
+clean:
+	rm -f $(ODIR)/*.o $(BDIR)/$(PROGRAM) $(BDIR)/debug
+
+# Dependencies
+# ------------
+
+# Main program depends on all modules
+$(ODIR)/$(PRGOBJ) : $(MODOBJ)
+

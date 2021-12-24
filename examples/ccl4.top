@@ -1,0 +1,47 @@
+; Topology generated from /home/ghahremanpour/Liquids/MOLECULES/OEP/carbon-tetrachloride/carbon-tetrachloride-3-oep.log.gz
+; Charge method used esp
+; MOL_GMX.top created by acpype (Rev: 0) on Wed Feb 14 17:43:36 2018
+
+[ defaults ]
+; nbfunc        comb-rule       gen-pairs       fudgeLJ fudgeQQ
+1               2               yes             0.5     0.8333
+
+[ atomtypes ]
+;name   bond_type     mass     charge   ptype   sigma         epsilon       Amb
+ cl       cl          0.00000  0.00000   A     3.47094e-01   1.10876e+00 ; 1.95  0.2650
+ c3       c3          0.00000  0.00000   A     3.39967e-01   4.57730e-01 ; 1.91  0.1094
+
+[ moleculetype ]
+;name            nrexcl
+ ccl4             3
+
+[ atoms ]
+;   nr  type  resi  res  atom  cgnr     charge      mass       ; qtot   bond_type
+     1   cl     1   CCL4  CL1    1     0.129911     35.45000 ; qtot 0.130
+     2   c3     1   CCL4   C1    2    -0.519521     12.01000 ; qtot -0.390
+     3   cl     1   CCL4  CL2    3     0.129849     35.45000 ; qtot -0.260
+     4   cl     1   CCL4  CL3    4     0.129849     35.45000 ; qtot -0.130
+     5   cl     1   CCL4  CL4    5     0.129911     35.45000 ; qtot 0.000
+
+[ bonds ]
+;   ai     aj funct   r             k
+     1      2   1    1.8045e-01    2.2284e+05 ;    CL1 - C1    
+     2      3   1    1.8045e-01    2.2284e+05 ;     C1 - CL2   
+     2      4   1    1.8045e-01    2.2284e+05 ;     C1 - CL3   
+     2      5   1    1.8045e-01    2.2284e+05 ;     C1 - CL4   
+
+[ angles ]
+;   ai     aj     ak    funct   theta         cth
+     1      2      3      1    1.0933e+02    4.5263e+02 ;    CL1 - C1     - CL2   
+     1      2      4      1    1.0933e+02    4.5263e+02 ;    CL1 - C1     - CL3   
+     1      2      5      1    1.0933e+02    4.5263e+02 ;    CL1 - C1     - CL4   
+     3      2      4      1    1.0933e+02    4.5263e+02 ;    CL2 - C1     - CL3   
+     3      2      5      1    1.0933e+02    4.5263e+02 ;    CL2 - C1     - CL4   
+     4      2      5      1    1.0933e+02    4.5263e+02 ;    CL3 - C1     - CL4   
+
+[ system ]
+  Bulk CCl4
+
+[ molecules ]
+; Compound        nmols
+ ccl4              125     
